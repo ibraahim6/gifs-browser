@@ -2,7 +2,7 @@ export default {
   namespaced: true,
   state: {
     Imgs: [],
-    favGifsArr: [],
+    favGifsArr: JSON.parse(localStorage.getItem("favGifsArr")) || [],
     limit: 12,
     offset: 0,
     total: 0,
@@ -14,6 +14,8 @@ export default {
   getters: {},
   mutations: {
     GET_FAV_GIFS(state) {
+      let arr =  JSON.parse(localStorage.getItem("favGifsArr"));
+      arr?state.favGifsArr=arr:localStorage.setItem(`favGifsArr`, JSON.stringify(state.favGifsArr));
       state.favGifsArr = JSON.parse(localStorage.getItem("favGifsArr"));
     },
     SET_FAV_GIFS(state) {
