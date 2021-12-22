@@ -4,6 +4,16 @@
 ```
 Please Make Sure a Giphy api key in .env file is valid
 ```
+### Main Idea
+```
+this app is gifs browser app you can show trending gifs, search about specific tags and interact with app 
+```
+### User Can
+```
+- show trending gifs.
+- search about specific tags. 
+- interact with app by (double click Favorite - show more detail about gif)
+```
 
 ## Project setup
 ```
@@ -24,15 +34,9 @@ npm run serve
 npm run build
 ```
 
-### Run your unit tests
-```
-npm run test:unit
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
