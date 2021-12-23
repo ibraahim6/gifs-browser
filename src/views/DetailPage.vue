@@ -150,21 +150,19 @@ export default {
   methods: {
     fetch() {
       this.loadState = true;
-      setTimeout(() => {
-        this.$store
-          .dispatch("Gifs/getSingleGif", {
-            id: this.$route.params.id,
-          })
-          .then(() => {
-            this.isValid = true;
-          })
-          .catch(() => {
-            this.isValid = false;
-          })
-          .finally(() => {
-            this.loadState = false;
-          });
-      }, 1500);
+      this.$store
+        .dispatch("Gifs/getSingleGif", {
+          id: this.$route.params.id,
+        })
+        .then(() => {
+          this.isValid = true;
+        })
+        .catch(() => {
+          this.isValid = false;
+        })
+        .finally(() => {
+          this.loadState = false;
+        });
     },
     favGif(item, idx) {
       if (this.isValid) {

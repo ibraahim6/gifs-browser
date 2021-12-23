@@ -33,10 +33,13 @@ export default {
       this.fetch();
     },
     "$route.query.q"(val) {
+      this.$store.commit("Gifs/RESET_SEARCH");
       this.q = val;
+      this.q = this.$route.query.q;
+      this.$store.dispatch("Gifs/setSearch", this.$route.query.q);
     },
   },
-  created() {
+  mounted() {
     this.$store.commit("Gifs/RESET_SEARCH");
     this.q = this.$route.query.q;
     this.$store.dispatch("Gifs/setSearch", this.$route.query.q);
@@ -58,7 +61,7 @@ export default {
       },
     },
   },
-  mounted() {},
+  
   methods: {
     fetch() {
       this.loadState = true;

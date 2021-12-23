@@ -14,7 +14,7 @@
       >
         <div class="head-area z-idx-5">
           <v-container class="d-flex justify-end align-center">
-            <v-btn icon small @click="favGif(item, idx)">
+            <v-btn icon small @click.stop="favGif(item, idx)">
               <v-icon :color="item.fav ? 'error' : '#fff'">mdi-heart</v-icon>
             </v-btn>
           </v-container>

@@ -18,7 +18,7 @@
             @keyup.enter="goSearch(search)"
           ></v-text-field>
         </div>
-        <div class="d-flex align-center">
+        <div v-if="isMobile" class="d-flex align-center">
           <v-btn @click="searchMobile = !searchMobile" icon>
             <v-icon>mdi-magnify</v-icon>
           </v-btn>
