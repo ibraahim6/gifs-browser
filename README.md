@@ -16,9 +16,9 @@ this app is gifs browser app you can show trending gifs, search about specific t
 ```
 
 ### Website
-```
+
 [Link](https://gifs-browser-ibraahim6.vercel.app/)
-```
+
 
 ## Project setup
 ```
