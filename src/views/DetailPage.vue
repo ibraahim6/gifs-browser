@@ -3,6 +3,7 @@
     <v-row>
       <v-col class="cover-div br-10" cols="12" md="12">
         <v-img
+          class="ma-0 pa-0"
           v-if="!loadState && singleImg.user"
           width="100%"
           height="190"
@@ -43,7 +44,7 @@
     </v-row>
     <div class="">
       <v-row justify="center" align="center" class="my-2">
-        <v-col :cols="isMobile ? 9 : 12" md="6" sm="6" xs="8">
+        <v-col :cols="isMobile ? 8 : 12" md="7" sm="7" xs="8">
           <v-card
             color="transparent"
             class="container-img my-6"
@@ -63,7 +64,7 @@
             </div>
           </v-card>
         </v-col>
-        <v-col :cols="isMobile ? 3 : 3" md="3" sm="3" xs="3">
+        <v-col :cols="isMobile ? 4 : 3" md="3" sm="4" xs="4">
           <v-container fluid fill-height class="fill-height d-block">
             <div class="d-block">
               <v-btn :disabled="!isValid" icon small @click="favGif(singleImg, -1)">

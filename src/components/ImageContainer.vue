@@ -3,14 +3,14 @@
     <masonry
       v-if="imgs.length"
       :gutter="{ default: '30px', 700: '15px' }"
-      :cols="{ default: 4, 1000: 4, 700: 3, 500: 2 }"
+      :cols="{ default: 4, 1000: 4, 700: 2, 500: 1 }"
     >
       <v-card
         color="transparent"
         class="container-img my-6"
         v-for="(item, idx) in imgs"
         :key="idx"
-        @click.prevent="handleClick(item, idx)"
+        @click.prevent="handleClick(item, idx, false)"
       >
         <div class="head-area z-idx-5">
           <v-container class="d-flex justify-end align-center">
@@ -30,13 +30,15 @@
             ></v-skeleton-loader>
           </template>
         </v-img>
-        <div class="bottom-area z-idx-5">
+        <div
+          class="bottom-area z-idx-5"
+          @click.stop="handleClick(item, idx, true)"
+        >
           <v-container class="d-flex justify-start align-center">
-            <router-link
-              @click="goSearch(item.title)"
-              :to="`/search?q=${item.title}`"
-              class="mr-2 white--text"
-              ># {{ item.title }}</router-link
+            <span
+              :href="`/search?q=${item.title}`"
+              class="mr-2 cursor-pointer white--text"
+              ># {{ item.title }}</span
             >
           </v-container>
         </div>
@@ -68,7 +70,7 @@ export default {
   data() {
     return {
       clicks: 0,
-      timer:0
+      timer: 0,
     };
   },
   watch: {},
@@ -76,17 +78,21 @@ export default {
   mounted() {},
   components: {},
   methods: {
-    handleClick(item, idx) {
-      this.clicks++;
-      if (this.clicks === 1) {
-        this.timer = setTimeout(() => {
-          this.goDetail(item.id);
-          this.clicks = 0;
-        }, 300);
+    handleClick(item, idx, isLink) {
+      if (isLink) {
+        this.goSearch(item.title);
       } else {
-        clearTimeout(this.timer);
-        this.favGif(item, idx);
-        this.clicks = 0;
+        this.clicks++;
+        if (this.clicks === 1) {
+          this.timer = setTimeout(() => {
+            this.goDetail(item.id);
+            this.clicks = 0;
+          }, 300);
+        } else {
+          clearTimeout(this.timer);
+          this.favGif(item, idx);
+          this.clicks = 0;
+        }
       }
     },
     goDetail(data) {
@@ -145,13 +151,13 @@ export default {
   height: 50px;
   color: #fff;
 }
-.bottom-area a {
+.bottom-area span {
   text-decoration: none;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.bottom-area:hover a {
+.bottom-area:hover span {
   text-decoration: underline;
 }
 .container-img:hover .head-area,
@@ -248,5 +254,8 @@ export default {
   100% {
     transform: rotate(-2.5deg);
   }
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
