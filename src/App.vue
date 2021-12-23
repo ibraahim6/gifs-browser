@@ -3,15 +3,18 @@
     <app-bar @goSearch="goSearch" />
     <v-main>
       <v-container>
-        <div v-if="chips.length > 0">
+        <div v-if="chips.length > 0 && search">
           <v-chip
-            class="mx-2"
+            class="mx-2 my-1"
             :color="getRandomColor(idx)"
             v-for="(chip, idx) in chips"
             :key="idx"
             @click="goSearch(chip.name)"
             >{{ chip.name }}</v-chip
           >
+        </div>
+        <div v-if="chips.length == 0 && search">
+          No Tags to show
         </div>
         <router-view />
       </v-container>
