@@ -1,0 +1,43 @@
+├── gif-browser/
+│   ├── public/
+│   │   ├── favcon.ico (dafeult icon)
+│   │   └── index.html
+│   ├── src/
+│   │   ├── assets/
+│   │   │   ├── logo.png
+│   │   │   └── logo.svg
+│   │   ├── components
+│   │   │   ├── AppBar.vue
+│   │   │   ├── ImageContainer.Vue
+│   │   │   ├── InfiniteScroll.Vue
+│   │   │   ├── LoadState.Vue
+│   │   │   └── UploadDialog.Vue
+│   │   ├── plugins
+│   │   │   ├── axiosConfig.js
+│   │   │   ├── toast.js
+│   │   │   └── vuetify.js
+│   │   ├── router
+│   │   │   ├── modules
+│   │   │   │   └── GifsModule.js
+│   │   │   └── index.js
+│   │   ├── router
+│   │   │   └── index.js
+│   │   ├── views
+│   │   │   ├── DetailPage.vue
+│   │   │   ├── Favorites.Vue
+│   │   │   ├── Home.Vue
+│   │   │   ├── Search.Vue
+│   │   │   └── Uploads.Vue
+│   │   ├── App.js
+│   │   └── main.js
+│   ├── .browserslistrc
+│   ├── .env.example
+│   ├── .eslintrc.js
+│   ├── .gitattributes
+│   ├── .gitignore
+│   ├── babel.config.js
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── README.md
+│   └── vue.config.js
+

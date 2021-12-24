@@ -3,6 +3,7 @@ export default {
   state: {
     Imgs: [],
     favGifsArr: JSON.parse(localStorage.getItem("favGifsArr")) || [],
+    uploadGifsArr: JSON.parse(localStorage.getItem("uploadGifsArr")) || [],
     limit: 12,
     offset: 0,
     total: 0,
@@ -10,12 +11,44 @@ export default {
     Chips: [],
     search: "",
     singleImg: "",
+    progressState: 0,
   },
   getters: {},
   mutations: {
+    GET_UPLOAD_GIFS(state) {
+      let arr = JSON.parse(localStorage.getItem("uploadGifsArr"));
+      arr
+        ? (state.uploadGifsArr = arr)
+        : localStorage.setItem(
+            `uploadGifsArr`,
+            JSON.stringify(state.uploadGifsArr)
+          );
+      state.uploadGifsArr = JSON.parse(localStorage.getItem("uploadGifsArr"));
+    },
+    SET_UPLOAD_GIFS(state) {
+      localStorage.setItem(
+        `uploadGifsArr`,
+        JSON.stringify(state.uploadGifsArr)
+      );
+    },
+    ADD_UPLOAD_GIF(state, data) {
+      state.uploadGifsArr.push(data.id);
+    },
+    REMOVE_UPLOAD_GIF(state, data) {
+      const idx = state.uploadGifsArr.map((item) => item).indexOf(data);
+      state.uploadGifsArr.splice(idx, 1);
+    },
+    PROGRESS_DATA(state, data) {
+      state.progressState = data;
+    },
+    RESET_PROGRESS_DATA(state) {
+      state.progressState = 0;
+    },
     GET_FAV_GIFS(state) {
-      let arr =  JSON.parse(localStorage.getItem("favGifsArr"));
-      arr?state.favGifsArr=arr:localStorage.setItem(`favGifsArr`, JSON.stringify(state.favGifsArr));
+      let arr = JSON.parse(localStorage.getItem("favGifsArr"));
+      arr
+        ? (state.favGifsArr = arr)
+        : localStorage.setItem(`favGifsArr`, JSON.stringify(state.favGifsArr));
       state.favGifsArr = JSON.parse(localStorage.getItem("favGifsArr"));
     },
     SET_FAV_GIFS(state) {
@@ -111,7 +144,7 @@ export default {
           });
       });
     },
-    getGifsFavorite(context, { ids, limit, offset }) {
+    getGifsIDS(context, { ids, limit, offset }) {
       return new Promise((resolve, reject) => {
         this._vm.$apiClient
           .get(`gifs?ids=${ids}&limit=${limit}&offset=${offset}`)
@@ -145,6 +178,38 @@ export default {
     },
     setSingleGif(context, data) {
       context.commit("SET_SINGLE", data);
+    },
+    uploadGif(context, data) {
+      let formData = new FormData();
+      formData.append("file", data.gif);
+      return new Promise((resolve, reject) => {
+        this._vm.$apiUpload
+          .post(`gifs`, formData, {
+            onUploadProgress: (progressEvent) =>
+              context.commit(
+                "PROGRESS_DATA",
+                Math.round((progressEvent.loaded * 100) / progressEvent.total)
+              ),
+          })
+          .then((response) => {
+            context.commit("ADD_UPLOAD_GIF", response.data.data);
+            context.commit("SET_UPLOAD_GIFS");
+            resolve(response);
+          })
+          .catch((error) => {
+            console.log(error);
+            reject(error);
+          });
+      });
+    },
+    getUploads(context) {
+      context.commit("GET_UPLOAD_GIFS");
+    },
+    setUploads(context) {
+      context.commit("SET_UPLOAD_GIFS");
+    },
+    addUpload(context, data) {
+      context.commit("ADD_UPLOAD_GIF", data);
     },
     getFavs(context) {
       context.commit("GET_FAV_GIFS");

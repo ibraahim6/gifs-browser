@@ -30,16 +30,15 @@
             ></v-skeleton-loader>
           </template>
         </v-img>
-        <div
-          class="bottom-area z-idx-5"
-          @click.stop="handleClick(item, idx, true)"
-        >
+        <div class="bottom-area z-idx-5">
           <v-container class="d-flex justify-start align-center">
             <span
-              :href="`/search?q=${item.title}`"
+              v-if="item.title"
+              @click.stop="handleClick(item, idx, true)"
               class="mr-2 cursor-pointer white--text"
               ># {{ item.title }}</span
             >
+            <span v-else>No Title</span>
           </v-container>
         </div>
         <div>

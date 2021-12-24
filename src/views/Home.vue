@@ -32,7 +32,7 @@ export default {
     this.$store.commit("Gifs/RESET_SEARCH");
     this.fetch();
   },
-  
+
   mounted() {},
   computed: {
     ...mapState({

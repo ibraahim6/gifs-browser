@@ -20,9 +20,14 @@ const routes = [
     component: () => import("../views/DetailPage.vue"),
   },
   {
-    path: "/profile",
+    path: "/favorites",
     name: "Profile",
-    component: () => import("../views/Profile.vue"),
+    component: () => import("../views/Favorites.vue"),
+  },
+  {
+    path: "/uploads",
+    name: "Uploads",
+    component: () => import("../views/Uploads.vue"),
   },
 ];
 

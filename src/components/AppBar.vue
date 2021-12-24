@@ -14,7 +14,7 @@
             hide-details
             label="Search"
             placeholder="Start typing to Search"
-            prepend-icon="mdi-magnify"
+            append-icon="mdi-magnify"
             @keyup.enter="goSearch(search)"
           ></v-text-field>
         </div>
@@ -24,15 +24,26 @@
           </v-btn>
         </div>
         <div class="d-flex align-center">
-          <v-btn text to="/profile">
-            <v-icon>mdi-account</v-icon>
-            <span class="ml-2" v-if="!isMobile">Welcome User</span>
+          <v-btn text to="/favorites">
+            <v-icon>mdi-heart</v-icon>
+            <span class="ml-2" v-if="!isMobile">Favorites</span>
+          </v-btn>
+        </div>
+        <div class="d-flex align-center">
+          <v-btn text to="/uploads">
+            <v-icon>mdi-tray-arrow-up</v-icon>
+            <span class="ml-2" v-if="!isMobile">Uploads</span>
           </v-btn>
         </div>
       </v-row>
     </v-app-bar>
     <v-expand-transition v-if="isMobile && searchMobile">
-      <v-card color="transparent" outlined class="mt-50" v-if="isMobile && searchMobile">
+      <v-card
+        color="transparent"
+        outlined
+        class="mt-50"
+        v-if="isMobile && searchMobile"
+      >
         <v-card-text>
           <v-col cols="10">
             <v-text-field
@@ -70,6 +81,9 @@ export default {
     isMobile() {
       return this.$vuetify.breakpoint.name === "xs";
     },
+    // isSM() {
+    //   return this.$vuetify.breakpoint.name === "sm";
+    // },
   },
 
   watch: {},

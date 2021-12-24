@@ -13,9 +13,7 @@
             >{{ chip.name }}</v-chip
           >
         </div>
-        <div v-if="chips.length == 0 && search">
-          No Tags to show
-        </div>
+        <div v-if="chips.length == 0 && search">No Tags to show</div>
         <router-view />
       </v-container>
     </v-main>
@@ -80,7 +78,7 @@ export default {
       this.$store.dispatch("Gifs/setSearch", this.$route.query.q);
     },
     searchChips(val) {
-      if(val){
+      if (val) {
         this.isLoading = true;
         this.$store.dispatch("Gifs/searchChips", val).finally(() => {
           this.isLoading = false;

@@ -53,7 +53,7 @@ export default {
         if (this.total >= this.offset) {
           this.loadState = true;
           this.$store
-            .dispatch("Gifs/getGifsFavorite", {
+            .dispatch("Gifs/getGifsIDS", {
               ids: this.favGifsArr,
               limit: this.limit,
               offset: this.offset,

@@ -5,6 +5,7 @@
         <v-img
           class="ma-0 pa-0"
           v-if="!loadState && singleImg.user"
+          aspect-ratio="2"
           width="100%"
           height="190"
           max-width="100%"
@@ -56,7 +57,10 @@
               :src="`https://media.giphy.com/media/${singleImg.id}/giphy.gif`"
             >
               <template v-slot:placeholder>
-                <v-skeleton-loader type="image" min-height="300"></v-skeleton-loader>
+                <v-skeleton-loader
+                  type="image"
+                  min-height="300"
+                ></v-skeleton-loader>
               </template>
             </v-img>
             <div>
@@ -67,15 +71,24 @@
         <v-col :cols="isMobile ? 4 : 3" md="3" sm="4" xs="4">
           <v-container fluid fill-height class="fill-height d-block">
             <div class="d-block">
-              <v-btn :disabled="!isValid" icon small @click="favGif(singleImg, -1)">
-                <v-icon :color="singleImg.fav ? 'error' : '#676767'">mdi-heart</v-icon>
+              <v-btn
+                :disabled="!isValid"
+                icon
+                small
+                @click="favGif(singleImg, -1)"
+              >
+                <v-icon :color="singleImg.fav ? 'error' : '#676767'"
+                  >mdi-heart</v-icon
+                >
               </v-btn>
             </div>
             <div class="d-block">
               <h5>
                 Date:
                 <span v-if="isValid">{{
-                  $moment(singleImg.import_datetime).format("DD MMM YYYY, h:mm A")
+                  $moment(singleImg.import_datetime).format(
+                    "DD MMM YYYY, h:mm A"
+                  )
                 }}</span>
                 <span v-else>Not Found</span>
               </h5>
@@ -179,7 +192,8 @@ export default {
         } else {
           this.addAnimate({ item, idx });
         }
-        this.$store.state.Gifs.singleImg.fav = !this.$store.state.Gifs.singleImg.fav;
+        this.$store.state.Gifs.singleImg.fav =
+          !this.$store.state.Gifs.singleImg.fav;
       } else {
         alert("This Image Not Correct");
       }
@@ -215,7 +229,11 @@ export default {
 }
 
 .head-area {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0)
+  );
   position: absolute;
   top: 0;
   bottom: 0;
@@ -229,7 +247,11 @@ export default {
   color: #fff;
 }
 .bottom-area {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0)
+  );
   position: absolute;
   bottom: 0;
   left: 0;
