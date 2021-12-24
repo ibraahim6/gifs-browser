@@ -29,7 +29,7 @@ gifs browser is app you can browse gifs from Giphy, it's show trending gifs, sea
 
 ### Website
 
-[Link](https://gifs-browser-ibraahim6.vercel.app/)
+[Link](https://gifs-browser.vercel.app/)
 
 ## Project setup
 
